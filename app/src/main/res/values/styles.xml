@@ -13,5 +13,6 @@
     <style name="ToolbarTitleTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="fontFamily">@font/jejugothic</item>
         <item name="android:textColor">#0062FF</item>
+        <item name="android:textStyle">bold</item>
     </style>
 </resources>
