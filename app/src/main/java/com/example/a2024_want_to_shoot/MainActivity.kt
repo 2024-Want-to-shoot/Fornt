@@ -20,7 +20,6 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    // View 요소
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
     private lateinit var calendarView: CalendarView
@@ -29,7 +28,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var basketGrid: GridLayout
     private lateinit var attendanceGrid: GridLayout
 
-    // 데이터 관리
     private val attendanceStatusList = BooleanArray(10)
     private var selectedDate: String = ""
 
@@ -55,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         navigationView = findViewById(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener { menuItem ->
             handleNavigationItem(menuItem)
-            drawerLayout.closeDrawer(GravityCompat.END)
+            drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
         // 제스처로 Drawer를 열고 닫을 수 있도록 설정
@@ -247,13 +245,36 @@ class MainActivity : AppCompatActivity() {
     // 네비게이션 아이템 처리
     private fun handleNavigationItem(menuItem: MenuItem) {
         when (menuItem.itemId) {
-            R.id.account -> startActivity(Intent(this, AccountActivity::class.java))
-            R.id.itm_rules -> startActivity(Intent(this, RulesActivity::class.java))
-            R.id.itm_search -> startActivity(Intent(this, SearchActivity::class.java))
-            R.id.itm_bookmark -> startActivity(Intent(this, BookmarkActivity::class.java))
-            R.id.itm_attendance -> startActivity(Intent(this, AttendanceActivity::class.java))
-            R.id.itm_quiz -> startActivity(Intent(this, QuizActivity::class.java))
-            R.id.itm_logout -> startActivity(Intent(this, LogoutActivity::class.java))
+            R.id.account -> {
+                val intent = Intent(this, AccountActivity::class.java)
+                startActivity(intent)
+            }
+
+            R.id.itm_rules -> {
+                val intent = Intent(this, RulesActivity::class.java)
+                startActivity(intent)
+            }
+
+            R.id.itm_search -> {
+                val intent = Intent(this, SearchActivity::class.java)
+                startActivity(intent)
+            }
+
+            R.id.itm_bookmark -> {
+                val intent = Intent(this, BookmarkActivity::class.java)
+                startActivity(intent)
+            }
+
+            R.id.itm_quiz -> {
+                val intent = Intent(this, QuizActivity::class.java)
+                startActivity(intent)
+            }
+
+            R.id.itm_logout -> {
+                val intent = Intent(this, LogoutActivity::class.java)
+                startActivity(intent)
+            }
+
         }
     }
 }
