@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SearchActivity">
@@ -13,4 +12,148 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"/>
 
-</LinearLayout>
+        <!-- 검색창과 카테고리 버튼들 -->
+        <LinearLayout
+            android:id="@+id/search_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:padding="17dp"
+            android:elevation="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                app:endIconMode="custom">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="동작검색"
+                    android:textSize="18dp"
+                    android:inputType="text"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
+                    android:gravity="center"/>
+
+                <ImageButton
+                    android:id="@+id/back_button"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_backbutton"
+                    android:background="@android:color/transparent"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endIconDrawable="@drawable/ic_search"
+                app:endIconMode="custom">
+                <!-- 검색창 -->
+                <EditText
+                    android:id="@+id/search_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="      원하는 동작을 검색해보세요!"
+                    android:textSize="12dp"
+                    android:padding="10dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@android:drawable/editbox_background"/>
+
+                <!-- 카테고리 버튼들 -->
+                <ImageButton
+                    android:id="@+id/search_button"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_search" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:padding="7dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"/>
+
+                    <Button
+                        android:id="@+id/category_shot"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="3dp"
+                        android:background="@drawable/btn_round"
+                        android:backgroundTint="#ABC9FB"
+                        android:text="슛"
+                        android:textSize="12dp"/>
+
+                    <Button
+                        android:id="@+id/category_dribble"
+                        android:layout_width="75dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="3dp"
+                        android:background="@drawable/btn_round"
+                        android:backgroundTint="#FFAF72"
+                        android:text="드리블"
+                        android:textSize="12sp"/>
+
+                    <Button
+                        android:id="@+id/category_step"
+                        android:layout_width="65dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="3dp"
+                        android:background="@drawable/btn_round"
+                        android:backgroundTint="#ABC9FB"
+                        android:text="스탭"
+                        android:textSize="12sp"/>
+
+                    <Button
+                        android:id="@+id/category_pass"
+                        android:layout_width="65dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="3dp"
+                        android:background="@drawable/btn_round"
+                        android:backgroundTint="#FFAF72"
+                        android:text="패스"
+                        android:textSize="12sp"/>
+
+                    <Button
+                        android:id="@+id/category_screen"
+                        android:layout_width="75dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="3dp"
+                        android:background="@drawable/btn_round"
+                        android:backgroundTint="#ABC9FB"
+                        android:text="스크린"
+                        android:textSize="12sp"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- 동작 목록 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/action_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="200dp"
+            android:clipToPadding="false"
+            android:padding="16dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
