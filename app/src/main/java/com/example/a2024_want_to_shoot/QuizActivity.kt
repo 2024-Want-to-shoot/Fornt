@@ -10,6 +10,7 @@ import android.widget.Toolbar
 import android.view.MenuItem
 import android.os.PersistableBundle
 import android.widget.Button
+import android.widget.*
 
 class QuizActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

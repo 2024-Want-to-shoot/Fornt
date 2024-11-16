@@ -20,20 +20,22 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
+    // View 요소
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
     private lateinit var calendarView: CalendarView
     private lateinit var attendanceButton: Button
     private lateinit var attendanceStatus: TextView
     private lateinit var basketGrid: GridLayout
+    private lateinit var attendanceGrid: GridLayout
 
+    // 데이터 관리
     private val attendanceStatusList = BooleanArray(10)
     private var selectedDate: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         setupToolbar() // 툴바 설정
         setupDrawerLayout() // 사이드바 설정
         setupUI() // UI 요소 초기화
@@ -53,9 +55,12 @@ class MainActivity : AppCompatActivity() {
         navigationView = findViewById(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener { menuItem ->
             handleNavigationItem(menuItem)
-            drawerLayout.closeDrawer(GravityCompat.START)
+            drawerLayout.closeDrawer(GravityCompat.END)
             true
         }
+        // 제스처로 Drawer를 열고 닫을 수 있도록 설정
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+
     }
 
     // UI 초기화
@@ -63,12 +68,12 @@ class MainActivity : AppCompatActivity() {
         calendarView = findViewById(R.id.calendarView)
         attendanceButton = findViewById(R.id.attendanceButton)
         attendanceStatus = findViewById(R.id.attendanceStatus)
-        basketGrid = findViewById(R.id.basketGrid)
+        attendanceGrid = findViewById(R.id.basketGrid)
 
         // 초기화 버튼 설정
         val resetButton = findViewById<Button>(R.id.resetButton)
         resetButton.setOnClickListener {
-            resetAttendance() // 초기화 메서드 호출
+            resetAttendance()
         }
 
         // 날짜 선택 이벤트
@@ -128,32 +133,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // 출석 체크 로직
-//    private fun markAttendance() {
-//        if (selectedDate.isNotEmpty()) {
-//            saveAttendance(selectedDate)
-//
-//            if (attendanceStatusList.all { it }) {
-//                // 공을 리셋
-//                resetAttendance()
-//                attendanceStatus.text = "새로운 출석 체크가 시작되었습니다!"
-//                return
-//            }
-//
-//            for (i in attendanceStatusList.indices) {
-//                if (!attendanceStatusList[i]) {
-//                    attendanceStatusList[i] = true
-//                    val imageView = basketGrid.getChildAt(i) as ImageView
-//                    imageView.setImageResource(R.drawable.ic_basketball)
-//                    updateAttendanceMessage()
-//                    return
-//                }
-//            }
-//            attendanceStatus.text = "이미 모든 출석이 완료되었습니다!"
-//        } else {
-//            attendanceStatus.text = "날짜를 선택해주세요!"
-//        }
-//    }
     private fun markAttendance() {
         if (selectedDate.isNotEmpty()) {
             val sharedPreferences = getSharedPreferences("AttendancePrefs", Context.MODE_PRIVATE)
@@ -191,9 +170,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     private fun resetAttendance() {
-
         // SharedPreferences 초기화
         val sharedPreferences = getSharedPreferences("AttendancePrefs", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
@@ -237,7 +214,6 @@ class MainActivity : AppCompatActivity() {
             attendanceStatus.text = "미출석"
         }
     }
-
     // 출석 데이터 저장
     private fun saveAttendance(date: String) {
         val sharedPreferences = getSharedPreferences("AttendancePrefs", Context.MODE_PRIVATE)
@@ -261,7 +237,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.menu_hamburger -> {
-                drawerLayout.openDrawer(GravityCompat.START)
+                drawerLayout.openDrawer(GravityCompat.END)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -275,6 +251,7 @@ class MainActivity : AppCompatActivity() {
             R.id.itm_rules -> startActivity(Intent(this, RulesActivity::class.java))
             R.id.itm_search -> startActivity(Intent(this, SearchActivity::class.java))
             R.id.itm_bookmark -> startActivity(Intent(this, BookmarkActivity::class.java))
+            R.id.itm_attendance -> startActivity(Intent(this, AttendanceActivity::class.java))
             R.id.itm_quiz -> startActivity(Intent(this, QuizActivity::class.java))
             R.id.itm_logout -> startActivity(Intent(this, LogoutActivity::class.java))
         }
