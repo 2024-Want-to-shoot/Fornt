@@ -23,15 +23,126 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-                app:title="Want to Shoot"
+                app:title="Want to Shoot!"
                 app:titleTextAppearance="@style/ToolbarTitleTextAppearance"/>
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/content_frame">
-                <!-- Main content can be loaded here -->
+                <TextView
+                    android:id="@+id/welcom_coment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/jejugothic"
+                    android:textSize="25sp"
+                    android:paddingLeft="15dp"
+                    android:textColor="#000000"
+                    android:layout_margin="15dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="75dp"
+                    android:padding="16dp">
+                    <CalendarView
+                        android:id="@+id/calendarView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"/>
+                    <TextView
+                        android:id="@+id/attendanceStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="출석 여부를 확인하세요."
+                        android:textSize="18sp"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/attendanceButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="출석 체크"
+                            android:layout_marginTop="16dp"/>
+
+                        <Button
+                            android:id="@+id/resetButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="초기화"
+                            android:layout_marginLeft="20dp"/>
+
+                    </LinearLayout>
+
+                    <GridLayout
+                        android:id="@+id/basketGrid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:columnCount="5"
+                        android:padding="16dp"
+                        android:rowCount="2">
+
+                    </GridLayout>
+                </LinearLayout>
             </FrameLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/bottom_player_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#E0E0E0"
+            android:padding="16dp"
+            android:gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/playlist_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_playshape"
+            android:contentDescription="Playlist Icon"
+            android:layout_marginEnd="16dp"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/playlist_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="지수의 농구 킹 되기"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:id="@+id/playlist_actions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="레이업 슛 / 프런트 체인지 드리블"
+                    android:textSize="14sp"
+                    android:textColor="#555555"/>
+
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/playlist_open_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="Open Playlist"
+                android:src="@drawable/ic_playlist_resized" />
+
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
