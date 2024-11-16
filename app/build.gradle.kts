@@ -44,7 +44,9 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation("androidx.appcompat:appcompat:1.3.0")
     implementation("androidx.legacy:legacy-support-v4:1.0.0") //DraqwerLayout
-    implementation("com.google.android.material:material:1.0.0") //NavigationView
+    implementation("com.google.android.material:material:1.0.0")
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.volley) //NavigationView
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

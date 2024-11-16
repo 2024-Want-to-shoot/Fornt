@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SearchActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"/>
+
+    <LinearLayout
+        android:id="@+id/search_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:padding="17dp"
+        android:elevation="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            app:endIconMode="custom">
+
+            <ImageButton
+                android:id="@+id/back_button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_backbutton"
+                android:background="@android:color/transparent"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="370dp"
+        android:layout_marginTop="80dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/activity_name"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:text="레이업 슛"
+            android:layout_marginTop="30dp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/bigactivity_img"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:src="@drawable/activity_ex"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/palyactivitystate"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_margin="40dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/palyactivitystate"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/before_play_button"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_margin="10dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/ic_beforeplay"
+                android:background="@color/white"/>
+
+            <ImageButton
+                android:id="@+id/play_state_button"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_margin="10dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/ic_stopplay"
+                android:background="@color/white"/>
+
+            <ImageButton
+                android:id="@+id/next_play_button"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_margin="10dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/ic_nextplay"
+                android:background="@color/white"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:layout_marginTop="460dp"
+        android:background="#F3F2F2"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/activity_details_name"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="left"
+            android:text="레이업 슛(lay-up shoot)"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/activity_details"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:text="농구에서, 골 가까이에서 뛰어올라 손바닥에 공을\n 올려 가볍게 던져 넣는 슛."
+            android:textColor="@color/black"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/activity_motion"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:text="동작 순서"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="123dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/activity_motion1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="10dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/smallactivity_ex" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_nextactivity" />
+
+            <ImageView
+                android:id="@+id/activity_motion2"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/smallactivity_ex" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_nextactivity" />
+
+            <ImageView
+                android:id="@+id/activity_motion3"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/smallactivity_ex" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
