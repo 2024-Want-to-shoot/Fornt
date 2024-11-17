@@ -128,32 +128,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // 출석 체크 로직
-//    private fun markAttendance() {
-//        if (selectedDate.isNotEmpty()) {
-//            saveAttendance(selectedDate)
-//
-//            if (attendanceStatusList.all { it }) {
-//                // 공을 리셋
-//                resetAttendance()
-//                attendanceStatus.text = "새로운 출석 체크가 시작되었습니다!"
-//                return
-//            }
-//
-//            for (i in attendanceStatusList.indices) {
-//                if (!attendanceStatusList[i]) {
-//                    attendanceStatusList[i] = true
-//                    val imageView = basketGrid.getChildAt(i) as ImageView
-//                    imageView.setImageResource(R.drawable.ic_basketball)
-//                    updateAttendanceMessage()
-//                    return
-//                }
-//            }
-//            attendanceStatus.text = "이미 모든 출석이 완료되었습니다!"
-//        } else {
-//            attendanceStatus.text = "날짜를 선택해주세요!"
-//        }
-//    }
     private fun markAttendance() {
         if (selectedDate.isNotEmpty()) {
             val sharedPreferences = getSharedPreferences("AttendancePrefs", Context.MODE_PRIVATE)

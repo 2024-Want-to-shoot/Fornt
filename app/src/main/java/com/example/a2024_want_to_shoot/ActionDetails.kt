@@ -46,7 +46,6 @@ class ActionDetails : AppCompatActivity() {
             } else {
                 R.drawable.ic_stopplay // 멈춘 상태일 때 보여줄 이미지
             }
-
             startButton.setImageResource(newImageResource)
         }
 
