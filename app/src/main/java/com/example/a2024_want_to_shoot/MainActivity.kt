@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var attendanceButton: Button
     private lateinit var attendanceStatus: TextView
     private lateinit var basketGrid: GridLayout
-    private lateinit var attendanceGrid: GridLayout
 
     private val attendanceStatusList = BooleanArray(10)
     private var selectedDate: String = ""
@@ -34,6 +33,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         setupToolbar() // 툴바 설정
         setupDrawerLayout() // 사이드바 설정
         setupUI() // UI 요소 초기화
@@ -56,9 +56,6 @@ class MainActivity : AppCompatActivity() {
             drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
-        // 제스처로 Drawer를 열고 닫을 수 있도록 설정
-        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-
     }
 
     // UI 초기화
@@ -66,12 +63,12 @@ class MainActivity : AppCompatActivity() {
         calendarView = findViewById(R.id.calendarView)
         attendanceButton = findViewById(R.id.attendanceButton)
         attendanceStatus = findViewById(R.id.attendanceStatus)
-        attendanceGrid = findViewById(R.id.basketGrid)
+        basketGrid = findViewById(R.id.basketGrid)
 
         // 초기화 버튼 설정
         val resetButton = findViewById<Button>(R.id.resetButton)
         resetButton.setOnClickListener {
-            resetAttendance()
+            resetAttendance() // 초기화 메서드 호출
         }
 
         // 날짜 선택 이벤트
@@ -131,6 +128,32 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // 출석 체크 로직
+//    private fun markAttendance() {
+//        if (selectedDate.isNotEmpty()) {
+//            saveAttendance(selectedDate)
+//
+//            if (attendanceStatusList.all { it }) {
+//                // 공을 리셋
+//                resetAttendance()
+//                attendanceStatus.text = "새로운 출석 체크가 시작되었습니다!"
+//                return
+//            }
+//
+//            for (i in attendanceStatusList.indices) {
+//                if (!attendanceStatusList[i]) {
+//                    attendanceStatusList[i] = true
+//                    val imageView = basketGrid.getChildAt(i) as ImageView
+//                    imageView.setImageResource(R.drawable.ic_basketball)
+//                    updateAttendanceMessage()
+//                    return
+//                }
+//            }
+//            attendanceStatus.text = "이미 모든 출석이 완료되었습니다!"
+//        } else {
+//            attendanceStatus.text = "날짜를 선택해주세요!"
+//        }
+//    }
     private fun markAttendance() {
         if (selectedDate.isNotEmpty()) {
             val sharedPreferences = getSharedPreferences("AttendancePrefs", Context.MODE_PRIVATE)
@@ -168,7 +191,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
     private fun resetAttendance() {
+
         // SharedPreferences 초기화
         val sharedPreferences = getSharedPreferences("AttendancePrefs", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
@@ -212,6 +237,7 @@ class MainActivity : AppCompatActivity() {
             attendanceStatus.text = "미출석"
         }
     }
+
     // 출석 데이터 저장
     private fun saveAttendance(date: String) {
         val sharedPreferences = getSharedPreferences("AttendancePrefs", Context.MODE_PRIVATE)
@@ -235,7 +261,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.menu_hamburger -> {
-                drawerLayout.openDrawer(GravityCompat.END)
+                drawerLayout.openDrawer(GravityCompat.END) // 오른쪽 드로어 열기
                 true
             }
             else -> super.onOptionsItemSelected(item)
