@@ -62,7 +62,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:gravity="center"
-                android:src="@drawable/layupshot" />
+                android:src="@drawable/layupshot"/>
 
         </LinearLayout>
 

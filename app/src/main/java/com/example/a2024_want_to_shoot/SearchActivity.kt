@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -33,7 +34,8 @@ class SearchActivity : AppCompatActivity() {
 
         // 검색창 연결
         searchInput = findViewById(R.id.search_input)
-        searchInput.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_NORMAL
+        searchInput.inputType = android.text.InputType.TYPE_CLASS_TEXT
+
 
         // 카테고리 버튼 연결
         val categoryShot = findViewById<Button>(R.id.category_shot)
@@ -58,7 +60,10 @@ class SearchActivity : AppCompatActivity() {
 
         // 가져온 데이터를 사용
         actions.forEach {
-            println(it)
+            when (it) {
+                is ActionItem.Action -> Log.d("SearchActivity", "Action: ${it.name}")
+                is ActionItem.Header -> Log.d("SearchActivity", "Header: ${it.title}")
+            }
         }
 
         // 어댑터 설정
@@ -69,12 +74,13 @@ class SearchActivity : AppCompatActivity() {
         searchInput.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 val query = s.toString()
-                adapter.filter(query)
+                adapter.filter(query) // 검색어 필터링 호출
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
+
 
         // 카테고리 버튼 클릭 이벤트
         categoryButtons.forEach { (category, button) ->

@@ -57,7 +57,7 @@
                     android:id="@+id/search_input"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:hint="      원하는 동작을 검색해보세요!"
+                    android:hint=" 원하는 동작을 검색해보세요!"
                     android:textSize="12dp"
                     android:padding="10dp"
                     android:layout_marginTop="6dp"

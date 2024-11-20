@@ -67,7 +67,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="출석 체크"
-                            android:layout_marginTop="16dp"/>
+
+                            android:textColor="@color/white"
+                            android:layout_marginTop="16dp"
+                            android:background="@color/purple_500"/>
 
                         <Button
                             android:id="@+id/resetButton"
@@ -75,7 +78,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:text="초기화"
-                            android:layout_marginLeft="20dp"/>
+                            android:textColor="@color/white"
+                            android:layout_marginLeft="20dp"
+                            android:background="@color/purple_500"/>
 
                     </LinearLayout>
 
@@ -86,16 +91,12 @@
                         android:columnCount="5"
                         android:rowCount="2"
                         android:padding="16dp"
-                        android:layout_marginTop="16dp" />
+                        android:layout_marginTop="32dp"
+                        android:background="@color/blue"
+                        android:gravity="center">
+                    </GridLayout>
 
-                    <GridLayout
-                        android:id="@+id/attendanceGrid"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:columnCount="5"
-                        android:rowCount="2"
-                        android:padding="16dp"
-                        android:layout_marginTop="32dp" />
+
                 </LinearLayout>
             </FrameLayout>
         </LinearLayout>

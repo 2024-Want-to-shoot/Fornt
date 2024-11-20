@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.recyclerview.widget.RecyclerView
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 
 class ActionAdapter(private var items: List<ActionItem>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -32,6 +32,16 @@ class ActionAdapter(private var items: List<ActionItem>) : RecyclerView.Adapter<
         notifyDataSetChanged()  // RecyclerView 갱신
     }
 
+    fun filter(query: String, category: String) {
+        items = originalItems.filter {
+            val matchesQuery = query.isEmpty() || (it is ActionItem.Action &&
+                    (it.name.contains(query, true) || it.category.contains(query, true)))
+            val matchesCategory = category == "전체" || (it is ActionItem.Action && it.category == category)
+            matchesQuery && matchesCategory
+        }
+        notifyDataSetChanged()
+    }
+
     // 카테고리 필터 메서드
     fun filterByCategory(category: String) {
         items = if (category == "전체") {
@@ -55,7 +65,7 @@ class ActionAdapter(private var items: List<ActionItem>) : RecyclerView.Adapter<
             }
             TYPE_ACTION -> {
                 val view = LayoutInflater.from(parent.context).inflate(R.layout.item_action, parent, false)
-                ActionViewHolder(view, this)  // ActionAdapter를 넘겨줌
+                ActionViewHolder(view, this)  // 어댑터 인스턴스를 전달
             }
             else -> throw IllegalArgumentException("Invalid view type")
         }
@@ -78,11 +88,14 @@ class ActionAdapter(private var items: List<ActionItem>) : RecyclerView.Adapter<
 
     override fun getItemCount(): Int = items.size
 
-    // ViewHolder에서 Adapter에 접근할 수 있도록 변경
+    // ViewHolder 클래스에서 Adapter를 참조할 수 있도록 수정
     class ActionViewHolder(itemView: View, private val adapter: ActionAdapter) : RecyclerView.ViewHolder(itemView) {
         private val actionName: TextView = itemView.findViewById(R.id.action_name)
         private val actionCategory: TextView = itemView.findViewById(R.id.action_category)
         private val actionBookmark: ImageView = itemView.findViewById(R.id.action_bookmark)
+
+        private var lastClickTime: Long = 0
+        private val doubleClickTime: Long = 300 // 300ms 간격
 
         fun bind(actionItem: ActionItem.Action) {
             actionName.text = actionItem.name
@@ -95,27 +108,22 @@ class ActionAdapter(private var items: List<ActionItem>) : RecyclerView.Adapter<
                 // 북마크 상태 반전
                 actionItem.isBookmark = !actionItem.isBookmark
                 // 어댑터를 통해 해당 아이템만 갱신
-                adapter.notifyItemChanged(adapterPosition)
+                adapter.notifyItemChanged(bindingAdapterPosition)  // 변경된 부분
             }
 
             itemView.setOnClickListener {
                 val currentClickTime = System.currentTimeMillis()
-                // 마지막 클릭과의 차이가 3초 이하면 더블 클릭으로 간주함
-                if (currentClickTime - adapter.lastClickTime < adapter.doubleClickTime) {
-                    // 더블 클릭 시 상세 페이지로 이동
+                if (currentClickTime - lastClickTime < doubleClickTime) {
+                    // 두 번 클릭 처리 (필요한 경우 구현)
+                } else {
+                    lastClickTime = currentClickTime
                     val context = itemView.context
-                    val intent = Intent(context, ActionDetails::class.java)
-                    // ActionItem 데이터 전달
-                    if (actionItem is ActionItem.Action) {
-                        intent.putExtra("action_name", actionItem.name)                     // 동작 이름
-                        intent.putExtra("details_name", actionItem.detailsName)             // 세부 정보 이름
-                        intent.putExtra("activity_details", actionItem.activityDetails)     // 활동 세부 사항
-                    }
-                    context.startActivity(intent)
+                    val intent = Intent(context, PlaybackActivity::class.java)
+                    intent.putExtra("motion_name", actionItem.name)             // 동작 이름 전달
+                    intent.putExtra("details_name", actionItem.detailsName)     // 세부 이름 전달
+                    intent.putExtra("activity_details", actionItem.activityDetails) // 세부 정보 전달
+                    context.startActivity(intent) // `PlaybackActivity` 실행
                 }
-
-                // 마지막 클릭 시간 업데이트
-                adapter.lastClickTime = currentClickTime
             }
         }
     }

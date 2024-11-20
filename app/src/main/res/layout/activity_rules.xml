@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RulesActivity">
@@ -11,6 +10,96 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"/>
+        android:layout_height="?attr/actionBarSize" />
 
-</LinearLayout>
+        <!-- 검색창과 카테고리 버튼들 -->
+        <LinearLayout
+            android:id="@+id/search_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:padding="17dp"
+            android:elevation="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                app:endIconMode="custom">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="농구 규칙"
+                    android:textSize="18dp"
+                    android:inputType="text"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
+                    android:gravity="center"/>
+
+                <ImageButton
+                    android:id="@+id/back_button"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_backbutton"
+                    android:background="@android:color/transparent"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:layout_marginTop="80dp"
+        android:background="@color/white">
+        
+        <Button
+            android:id="@+id/category_basic"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/btn_round"
+            android:backgroundTint="#ABC9FB"
+            android:text="기본규칙"
+            android:textSize="12sp"/>
+        <Button
+            android:id="@+id/category_team"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/btn_round"
+            android:backgroundTint="#FFAF72"
+            android:text="팀 구성 및 선수"
+            android:textSize="12sp"/>
+        <Button
+            android:id="@+id/category_start"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/btn_round"
+            android:backgroundTint="#ABC9FB"
+            android:text="경기 시작 및 진행"
+            android:textSize="12sp"/>
+        <Button
+            android:id="@+id/category_score"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/btn_round"
+            android:backgroundTint="#FFAF72"
+            android:text="득점 및 스코어링"
+            android:textSize="12sp"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rule_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="150dp"
+        android:padding="16dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
