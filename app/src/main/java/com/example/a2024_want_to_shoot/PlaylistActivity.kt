@@ -35,7 +35,9 @@ class PlaylistActivity : AppCompatActivity() {
         val adapter = PlaylistAdapter(items) { clickedItem ->
             // 클릭된 아이템에 따라 화면 이동
             val intent = Intent(this, PlaybackActivity::class.java)
-            intent.putExtra("item_title", clickedItem.title) // 제목 전달
+//            intent.putExtra("item_title", clickedItem.title) // 제목 전달
+            intent.putExtra("motion_name", clickedItem.title)
+
             startActivity(intent)
         }
 

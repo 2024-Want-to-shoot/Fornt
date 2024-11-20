@@ -6,12 +6,12 @@
         android:title="@string/menu_account"/>
 
     <item android:id="@+id/itm_rules"
-        android:icon="@drawable/ic_ruls"
+        android:icon="@drawable/ic_rule"
         android:title="농구 규칙"/>
 
     <item android:id="@+id/itm_search"
         android:icon="@drawable/ic_search"
-        android:title="동작 검색"/>
+        android:title="동작"/>
 
     <item android:id="@+id/itm_bookmark"
         android:icon="@drawable/ic_bookmark"

@@ -1,6 +1,7 @@
 package com.example.a2024_want_to_shoot
 
 sealed class ActionItem {
+
     data class Header(val title: String) : ActionItem()
     data class Action(
         val name: String,
@@ -9,6 +10,7 @@ sealed class ActionItem {
         val activityDetails: String,
         var isBookmark: Boolean
     ) : ActionItem()
+
 }
 
 // 더미 데이터 생성 함수
@@ -40,3 +42,4 @@ fun getDummyData(): List<ActionItem> {
         ActionItem.Action("프론트 스크린", "스크린", "프론트 스크린 (Front Screen)", "공이 있는 방향에서 수비를 막아\n동료에게 공간을 만드는 스크린.", false)
     )
 }
+

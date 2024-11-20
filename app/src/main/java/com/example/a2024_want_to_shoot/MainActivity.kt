@@ -94,9 +94,9 @@ class MainActivity : AppCompatActivity() {
         for (i in attendanceStatusList.indices) {
             val imageView = ImageView(this).apply {
                 layoutParams = GridLayout.LayoutParams().apply {
-                    width = 150
+                    width = 155
                     height = 150
-                    setMargins(8, 8, 8, 8)
+                    setMargins(15, 8, 11, 8)
                 }
                 setImageResource(R.drawable.ic_basketball_empty)
                 tag = i
@@ -127,6 +127,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+
 
     private fun markAttendance() {
         if (selectedDate.isNotEmpty()) {
@@ -198,6 +200,7 @@ class MainActivity : AppCompatActivity() {
             Log.e("Error", "attendanceStatus 뷰가 초기화되지 않았습니다.")
         }
     }
+
 
     // 출석 여부 확인
     private fun checkAttendance(date: String) {
